@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gamified cyber training, designed and built | Rémi Couture</title>
+<meta name="description" content="Eight playable cybersecurity training games, with real content, tested learning rules and live demos. I design and build gamified training for cyber ranges and security training platforms.">
+<link rel="canonical" href="https://remiclassic.github.io/cyber-training-games/">
+<meta property="og:title" content="Gamified cyber training, designed and built">
+<meta property="og:description" content="Eight playable training games with real content and 209 passing tests. Play them, then let's build yours.">
+<meta property="og:image" content="https://remiclassic.github.io/cyber-training-games/media/network-defense.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0a0e1b">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1b;--panel:#131a30;--panel2:#0f152a;--line:#ffffff22;--ink:#f3f5fa;--muted:#aab3c7;--lime:#d6eab8;--amber:#f3b58b;--cyan:#8fd3ea}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',Arial,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,video{display:block;max-width:100%;height:auto}a{color:inherit}button{font:inherit;cursor:pointer}
+h1,h2,h3{font-family:Manrope,sans-serif;letter-spacing:-.04em;line-height:1.05;margin:0;text-wrap:balance}
+h1{font-size:clamp(42px,7.4vw,104px);font-weight:800}h2{font-size:clamp(30px,4.4vw,58px);font-weight:800}h3{font-size:clamp(24px,2.6vw,36px);font-weight:800}
+p{margin:0;color:var(--muted)}b,strong{color:var(--ink);font-weight:600}
+.wrap{width:min(1280px,calc(100% - 48px));margin-inline:auto}
+.eb{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin-bottom:16px}
+.lede{font-size:clamp(17px,1.5vw,21px);max-width:720px;margin-top:22px}
+section{padding-block:clamp(64px,8vw,112px)}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 56px;flex-wrap:wrap;margin-bottom:40px}.head>p{max-width:430px;font-size:16px}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:15px 24px;border-radius:8px;border:1px solid #ffffff40;background:transparent;color:var(--ink);font-weight:600;font-size:15px;text-decoration:none;transition:background .2s,transform .2s}
+.btn:hover{background:#ffffff14;transform:translateY(-2px)}.btn.primary{background:var(--lime);border-color:var(--lime);color:#16210c}.btn.primary:hover{background:#e8f5d3}
+:focus-visible{outline:3px solid var(--lime);outline-offset:4px}
+.nav{position:sticky;top:0;z-index:20;background:#0a0e1be6;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;height:64px}
+.brand{font-family:Manrope,sans-serif;font-weight:800;letter-spacing:-.03em;text-decoration:none;font-size:18px;white-space:nowrap}.brand span{color:var(--lime)}
+.nav nav{display:flex;gap:26px;align-items:center;font-size:14px;font-weight:500}.nav nav a{text-decoration:none;color:#d5dbe8}.nav nav a:hover{color:#fff}
+.nav .btn{padding:10px 16px;font-size:14px}
+.hero{position:relative;overflow:hidden;padding-block:clamp(72px,10vw,140px) clamp(56px,7vw,96px)}
+.hero video.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.34}
+.hero:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#0a0e1bf2 0%,#0a0e1bb3 55%,#0a0e1b80 100%),linear-gradient(#0a0e1b00 60%,#0a0e1b 100%)}
+.hero .wrap{position:relative;z-index:1}.hero h1 span{color:var(--lime)}
+.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:64px;padding-top:30px;border-top:1px solid var(--line)}
+.stats b{display:block;font-family:Manrope,sans-serif;font-weight:800;font-size:clamp(34px,4vw,56px);letter-spacing:-.04em;line-height:1;color:var(--lime)}.stats span{display:block;font-size:14.5px;color:var(--muted);margin-top:10px;line-height:1.45}
+.wall{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tile{position:relative;display:block;aspect-ratio:16/9;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#05080f;text-decoration:none;box-shadow:0 20px 44px #0008}
+.tile img,.tile video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.tile video{opacity:0;transition:opacity .5s}.tile video.on{opacity:1}
+.tile:after{content:'';position:absolute;inset:0;background:linear-gradient(#05080f00 50%,#05080fe6 96%)}
+.tile span{position:absolute;z-index:1;left:16px;right:16px;bottom:13px;font:800 clamp(15px,1.5vw,21px) Manrope,sans-serif;letter-spacing:-.02em;line-height:1.1;text-transform:uppercase}
+.tile small{display:block;font:600 10px 'DM Sans',sans-serif;letter-spacing:.12em;color:var(--lime);margin-top:6px}
+.reel{display:grid;grid-template-columns:1.7fr 1fr;gap:28px;align-items:center}
+.frame{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#05080f;box-shadow:0 30px 70px #0009}.frame video{width:100%;aspect-ratio:16/9;background:#05080f}
+.band{background:var(--panel2);border-block:1px solid var(--line)}
+.game{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:44px;align-items:start;padding-block:56px;border-top:1px solid var(--line)}
+.game.flip .game-media{order:2}
+.game-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:16px}.game-actions span{font-size:13px;color:var(--muted)}
+.debrief{margin:22px 0 0;display:grid;grid-template-columns:200px 1fr;gap:16px;align-items:center}.debrief img{border-radius:8px;border:1px solid var(--line)}.debrief figcaption{font-size:13.5px;color:var(--muted)}
+.teaches{font-size:17px;color:#dfe6f3;margin:14px 0 6px}.teaches b{color:var(--lime)}
+blockquote{margin:14px 0 0;padding:12px 16px;background:#0a1020;border-left:3px solid var(--cyan);border-radius:0 8px 8px 0;font-size:15px;line-height:1.55;color:#d9e2f1}
+blockquote.bad{border-left-color:var(--amber)}blockquote small{display:block;font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#8a96ad;margin-bottom:5px}
+code{font-family:Consolas,monospace;font-size:13px;color:#cfe7f5;overflow-wrap:anywhere}
+dl{margin:20px 0 0}dl>div{padding:13px 0;border-top:1px solid var(--line)}dt{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}dd{margin:6px 0 0;font-size:15px;color:var(--muted);line-height:1.6}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px 24px 26px}.card h4{font:700 20px Manrope,sans-serif;letter-spacing:-.02em;margin:0 0 10px;line-height:1.2}.card p{font-size:15.5px;line-height:1.6}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid #ffffff33;border-radius:5px;padding:4px 9px;color:#dfe6f3;margin-bottom:12px}
+table{width:100%;border-collapse:collapse;font-size:15.5px}th{font-size:11px;letter-spacing:.11em;text-transform:uppercase;text-align:left;color:var(--lime);padding:0 14px 12px 0}td{padding:13px 14px 13px 0;border-top:1px solid var(--line);color:var(--muted);vertical-align:top}td b{color:var(--ink)}
+.split{display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:start}
+.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.offer{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px}
+.offer.hot{border-color:var(--lime);background:#17213a}.offer .pill{align-self:flex-start;background:var(--lime);color:#16210c;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-radius:20px;padding:5px 12px;margin-bottom:14px}
+.offer h4{font:800 26px Manrope,sans-serif;letter-spacing:-.03em;margin:0 0 6px;line-height:1.1}.offer .when{font-size:14px;color:var(--lime);font-weight:600;margin-bottom:12px}
+.offer ul{list-style:none;margin:16px 0 24px;padding:16px 0 0;border-top:1px solid var(--line);display:grid;gap:9px}.offer li{font-size:15px;color:var(--muted);padding-left:18px;position:relative;line-height:1.5}.offer li:before{content:'';position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--lime)}
+.offer .btn{margin-top:auto;align-self:flex-start}
+.about{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+.about ul{list-style:none;margin:24px 0 0;padding:0}.about li{padding:14px 0;border-top:1px solid var(--line);font-size:16px;color:var(--muted)}
+.cta{background:radial-gradient(ellipse 70% 100% at 50% 0,#2a2f6b80,transparent 70%),var(--panel2);border:1px solid var(--line);border-radius:18px;padding:clamp(34px,5vw,64px);text-align:center}
+.cta .actions{justify-content:center}.cta p{max-width:640px;margin:18px auto 0}
+footer{padding:30px 0 44px;font-size:13px;color:#7f8aa3}footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}footer a{color:#aab3c7}
+#player{position:fixed;inset:0;z-index:60;background:#05070ff5;display:none;flex-direction:column}#player.on{display:flex}
+#player .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 16px;font-size:14px;font-weight:600}#player iframe{flex:1;border:0;width:100%;background:var(--bg)}
+@media(max-width:1000px){.wall{grid-template-columns:1fr 1fr}.reel,.split,.about{grid-template-columns:1fr}.grid3,.offers{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.game{grid-template-columns:1fr;gap:26px;padding-block:44px}.game.flip .game-media{order:0}.nav nav a:not(.btn){display:none}}
+@media(max-width:560px){body{font-size:16px}.wrap{width:calc(100% - 32px)}.grid2{grid-template-columns:1fr}.debrief{grid-template-columns:120px 1fr}.actions .btn{flex:1 1 100%;justify-content:center}table{font-size:14.5px}.wall{gap:10px}.brand{font-size:15px;white-space:normal;line-height:1.15}.nav .wrap{gap:10px}.nav .btn{padding:9px 12px;font-size:13px;white-space:nowrap}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero video.bg{display:none}.btn{transition:none}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap"><a class="brand" href="#top">Rémi Couture <span>·</span> Cyber training games</a><nav aria-label="Sections"><a href="#games">The games</a><a href="#why">Why it works</a><a href="#build">How it is built</a><a href="#work">Work with me</a><a class="btn primary" href="mailto:rcouture@gmail.com?subject=Gamified%20cyber%20training%20for%20our%20platform&body=Company%3A%0AWhat%20we%20train%3A%0AWhat%20we%20want%20help%20with%3A%0ATiming%3A%0A">Let’s talk ↗</a></nav></div></header>
+
+<main id="top">
+<section class="hero">
+  <video class="bg" muted loop playsinline preload="none" poster="media/timelapse.jpg" data-src="media/timelapse.mp4" data-auto aria-hidden="true"></video>
+  <div class="wrap">
+    <p class="eb">Gamified cyber training · designed and built by Rémi Couture</p>
+    <h1>Cyber training your learners <span>actually finish.</span></h1>
+    <p class="lede">I design and build training games for cyber ranges and security training platforms. Here are eight, playable right now, with real content and a tested rule behind every lesson. Play them, then picture your own curriculum working this way.</p>
+    <div class="actions"><a class="btn primary" href="#games">▶ Watch and play the games</a><a class="btn" href="mailto:rcouture@gmail.com?subject=Gamified%20cyber%20training%20for%20our%20platform&body=Company%3A%0AWhat%20we%20train%3A%0AWhat%20we%20want%20help%20with%3A%0ATiming%3A%0A">Talk about your platform ↗</a><a class="btn" href="#reel">Three-minute reel ↓</a></div>
+    <div class="stats">
+      <div><b>8</b><span>games, each playable from briefing to debrief</span></div>
+      <div><b>209</b><span>automated tests, all passing, on the learning rules</span></div>
+      <div><b>8</b><span>genres: strategy, inbox, triage, puzzle, SOC case, dispatch, SQL, arcade</span></div>
+      <div><b>0</b><span>servers or labs to run. Each game is a static page</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="games" class="band">
+  <div class="wrap">
+    <div class="head"><div><p class="eb">All eight, in motion</p><h2>Pick a game. Every clip is real play.</h2></div><p>Each one shows a decision, a mistake, the game’s own explanation, and the fix. Click a tile for the full write-up and a playable build.</p></div>
+    <div class="wall"><a class="tile" href="#g-network-defense"><img src="media/network-defense.jpg" alt="" width="1280" height="720" loading="lazy"><video muted loop playsinline preload="none" data-src="media/network-defense.mp4" aria-hidden="true" tabindex="-1"></video><span>Network Defense<small>Isometric strategy</small></span></a><a class="tile" href="#g-phishing"><img src="media/phishing.jpg" alt="" width="1280" height="720" loading="lazy"><video muted loop playsinline preload="none" data-src="media/phishing.mp4" aria-hidden="true" tabindex="-1"></video><span>Phishing Speed Drill<small>Timed inbox drill</small></span></a><a class="tile" href="#g-triage"><img src="media/triage.jpg" alt="" width="1280" height="720" loading="lazy"><video muted loop playsinline preload="none" data-src="media/triage.mp4" aria-hidden="true" tabindex="-1"></video><span>Incident Triage Race<small>Alert triage board</small></span></a><a class="tile" href="#g-soc"><img src="media/soc.jpg" alt="" width="1280" height="720" loading="lazy"><video muted loop playsinline preload="none" data-src="media/soc.mp4" aria-hidden="true" tabindex="-1"></video><span>SOC Dashboard Challenge<small>SOC investigation case</small></span></a><a class="tile" href="#g-dispatch"><img src="media/dispatch.jpg" alt="" width="1280" height="720" loading="lazy"><video muted loop playsinline preload="none" data-src="media/dispatch.mp4" aria-hidden="true" tabindex="-1"></video><span>Cyber Dispatch<small>Dispatcher desk</small></span></a><a class="tile" href="#g-queryhunt"><img src="media/queryhunt.jpg" alt="" width="1280" height="720" loading="lazy"><video muted loop playsinline preload="none" data-src="media/queryhunt.mp4" aria-hidden="true" tabindex="-1"></video><span>Query Hunt<small>SQL investigation</small></span></a><a class="tile" href="#g-cloud"><img src="media/cloud.jpg" alt="" width="1280" height="720" loading="lazy"><video muted loop playsinline preload="none" data-src="media/cloud.mp4" aria-hidden="true" tabindex="-1"></video><span>Cloud Command<small>Arcade flight</small></span></a><a class="tile" href="#g-privilege"><img src="media/privilege.jpg" alt="" width="1280" height="720" loading="lazy"><video muted loop playsinline preload="none" data-src="media/privilege.mp4" aria-hidden="true" tabindex="-1"></video><span>Privilege Path Puzzle<small>Access graph puzzle</small></span></a></div>
+  </div>
+</section>
+
+<section id="reel">
+  <div class="wrap reel">
+    <div class="frame"><video controls playsinline preload="none" poster="media/network-defense.jpg" data-src="media/reel.mp4" aria-label="Gameplay reel of all eight games"></video></div>
+    <div><p class="eb">Three minutes</p><h2>The whole line-up in one reel.</h2><p class="lede" style="font-size:17px">Watch for three things in each game: the learner makes a real decision with real content, the game explains a mistake in one or two specific sentences, and the learner fixes it and sees the result change.</p></div>
+  </div>
+</section>
+
+<section class="band" style="padding-bottom:40px">
+  <div class="wrap">
+    <div class="head"><div><p class="eb">The games, one by one</p><h2>Real content, quoted from the games.</h2></div><p>Nothing here is placeholder. Every quote below is on screen in the build you can play.</p></div>
+    
+<article class="game" id="g-network-defense">
+  <div class="game-media">
+    <div class="frame"><video controls muted loop playsinline preload="none" poster="media/network-defense.jpg" data-auto data-src="media/network-defense.mp4" aria-label="Network Defense: Keep Finance Online gameplay"></video></div>
+    <div class="game-actions"><button class="btn primary" type="button" data-play="play/index.html" data-name="Network Defense: Keep Finance Online">▶ Play this game</button><span>Runs in your browser · sample content</span></div>
+    <figure class="debrief"><img src="shots/network-defense-debrief.jpg" alt="Network Defense: Keep Finance Online debrief screen" width="1100" height="619" loading="lazy"><figcaption>The debrief explains the result and replays the learner’s decisions.</figcaption></figure>
+  </div>
+  <div class="game-copy">
+    <p class="eb">Game 1 of 8 · Isometric strategy</p>
+    <h3>Network Defense: Keep Finance Online</h3>
+    <p class="teaches"><b>Teaches:</b> How routes and dependencies keep a service up, how to read evidence, and how to write an access rule that stops the attacker without stopping the business.</p>
+    <blockquote class=""><small>Evidence on screen</small>“Source 198.51.100.23 is not on any approved list and is outside the company network.” “Destination: Finance — Remote desktop admin (RDP 3389).” “Pattern: repeated sign-in attempts, each with a different username.”</blockquote><blockquote class="bad"><small>After a common mistake</small>“You connected Finance straight to the Gateway. Invoices reached Finance, but Finance couldn’t reach its database on the Core server, so each one failed. Services depend on other services — a path from the internet isn’t enough.”</blockquote><blockquote class=""><small>Final challenge, no hints</small>“Which single rule best fits the policy?” Answer: <code>DENY 203.0.113.200 → HR : Admin console</code></blockquote>
+    <dl>
+      <div><dt>How it is scored</dt><dd>40% service delivered, 40% prohibited activity denied, 20% efficiency. Two reasoning checkpoints and the final challenge are recorded separately as learning evidence.</dd></div>
+      <div><dt>Proved by tests</dt><dd>“Blanket blocking cannot earn the best result” and “backup routes preserve the access policy”, each checked on 8 seeds. 32 tests.</dd></div>
+      <div><dt>Depth and replay</dt><dd>A new seed changes the traffic order, the attacker’s address and service, and which link fails.</dd></div>
+      <div><dt>Why it sticks</dt><dd>The learner watches a rule succeed or fail on live traffic, so cause and effect are remembered together. Firewall and access rules, taught through consequences.</dd></div>
+    </dl>
+  </div>
+</article>
+<article class="game flip" id="g-phishing">
+  <div class="game-media">
+    <div class="frame"><video controls muted loop playsinline preload="none" poster="media/phishing.jpg" data-auto data-src="media/phishing.mp4" aria-label="Phishing Speed Drill: The Payroll Request gameplay"></video></div>
+    <div class="game-actions"><button class="btn primary" type="button" data-play="play/phishing.html" data-name="Phishing Speed Drill: The Payroll Request">▶ Play this game</button><span>Runs in your browser · sample content</span></div>
+    <figure class="debrief"><img src="shots/phishing-debrief.jpg" alt="Phishing Speed Drill: The Payroll Request debrief screen" width="1100" height="619" loading="lazy"><figcaption>The debrief explains the result and replays the learner’s decisions.</figcaption></figure>
+  </div>
+  <div class="game-copy">
+    <p class="eb">Game 2 of 8 · Timed inbox drill</p>
+    <h3>Phishing Speed Drill: The Payroll Request</h3>
+    <p class="teaches"><b>Teaches:</b> Reading the sender, the reply-to and the real link destination, backing a call with evidence, and knowing when only a phone check can settle it.</p>
+    <blockquote class=""><small>A look-alike domain</small><code>helpdesk@acme.example.it-notices.example</code> “A domain is read from the right. This address belongs to it-notices.example; ‘acme.example’ is only a label in front of it.”</blockquote><blockquote class=""><small>A genuine address, still not safe</small>A bank-change request from a real colleague’s address: “The address is genuine, but a matching address doesn’t prove who is typing. Mailboxes get compromised.”</blockquote><blockquote class="bad"><small>After a false alarm</small>“This was a real payslip notice. External mail and a generic greeting are not evidence by themselves; the domain, link, and timing all matched. False alarms slow down real work.”</blockquote>
+    <dl>
+      <div><dt>How it is scored</dt><dd>100 for the best response, +20 per strong cue cited, a streak bonus, and a speed bonus that only counts after a correct decision. A false alarm scores zero.</dd></div>
+      <div><dt>Proved by tests</dt><dd>Always-report, always-safe and always-verify each “stay out of the top two ratings”. “Slow but correct play still earns the top rating.” 53 tests.</dd></div>
+      <div><dt>Depth and replay</dt><dd>8 messages, 32 cues. The first message is guided and untimed; later batches are shuffled per seed.</dd></div>
+      <div><dt>Why it sticks</dt><dd>Citing the evidence before deciding builds the habit of looking, not guessing. Awareness training for every employee, not only analysts.</dd></div>
+    </dl>
+  </div>
+</article>
+<article class="game" id="g-triage">
+  <div class="game-media">
+    <div class="frame"><video controls muted loop playsinline preload="none" poster="media/triage.jpg" data-auto data-src="media/triage.mp4" aria-label="Incident Triage Race: The Busy Morning gameplay"></video></div>
+    <div class="game-actions"><button class="btn primary" type="button" data-play="play/triage.html" data-name="Incident Triage Race: The Busy Morning">▶ Play this game</button><span>Runs in your browser · sample content</span></div>
+    <figure class="debrief"><img src="shots/triage-debrief.jpg" alt="Incident Triage Race: The Busy Morning debrief screen" width="1100" height="619" loading="lazy"><figcaption>The debrief explains the result and replays the learner’s decisions.</figcaption></figure>
+  </div>
+  <div class="game-copy">
+    <p class="eb">Game 3 of 8 · Alert triage board</p>
+    <h3>Incident Triage Race: The Busy Morning</h3>
+    <p class="teaches"><b>Teaches:</b> Setting priority from evidence and business impact, linking alerts that are one incident, and revising when new facts arrive.</p>
+    <blockquote class=""><small>Tagged “Low” in the queue</small>A new device on an account that “approves outgoing payments”. “The quietest alert in the queue turns out to be an attacker with a working sign-in on the payments portal. Business impact, not the severity tag, sets the urgency.”</blockquote><blockquote class=""><small>A mid-shift update</small>“Infrastructure confirms change ticket CHG-4471: backups moved to a new offsite storage provider this morning… Nothing else in the queue is explained by it.”</blockquote><blockquote class="bad"><small>A justification that always scores zero</small>“The severity tag says so.”</blockquote>
+    <dl>
+      <div><dt>How it is scored</dt><dd>Points for the best or a defensible lane, a matching reason, revising on new evidence and correct links. Missed criticals and needless escalations cost points. Time is reported separately.</dd></div>
+      <div><dt>Proved by tests</dt><dd>“Never treats the severity tag as a valid justification.” “Rewards revising when evidence changes, not standing still.” 13 tests.</dd></div>
+      <div><dt>Depth and replay</dt><dd>6 alerts, 29 evidence items, 2 updates over 3 rounds, with a 7-moment replay in the debrief.</dd></div>
+      <div><dt>Why it sticks</dt><dd>Being wrong about the quiet alert, then seeing why, is the lesson people repeat to colleagues. A natural team game for workshops and live events.</dd></div>
+    </dl>
+  </div>
+</article>
+<article class="game flip" id="g-soc">
+  <div class="game-media">
+    <div class="frame"><video controls muted loop playsinline preload="none" poster="media/soc.jpg" data-auto data-src="media/soc.mp4" aria-label="SOC Dashboard Challenge: A Strange Login gameplay"></video></div>
+    <div class="game-actions"><button class="btn primary" type="button" data-play="play/soc.html" data-name="SOC Dashboard Challenge: A Strange Login">▶ Play this game</button><span>Runs in your browser · sample content</span></div>
+    <figure class="debrief"><img src="shots/soc-debrief.jpg" alt="SOC Dashboard Challenge: A Strange Login debrief screen" width="1100" height="619" loading="lazy"><figcaption>The debrief explains the result and replays the learner’s decisions.</figcaption></figure>
+  </div>
+  <div class="game-copy">
+    <p class="eb">Game 4 of 8 · SOC investigation case</p>
+    <h3>SOC Dashboard Challenge: A Strange Login</h3>
+    <p class="teaches"><b>Teaches:</b> Separating evidence that discriminates between explanations from evidence that fits both, and responding in proportion while data is leaving.</p>
+    <blockquote class=""><small>Same opening, two possible truths</small>Compromise: “OUTLOOK.EXE → WINWORD.EXE (Invoice_Q3_revised.docm) → powershell.exe -WindowStyle Hidden -EncodedCommand …” Approved work: “Task Scheduler → powershell.exe -File QuarterClose-Export.ps1”.</blockquote><blockquote class=""><small>Evidence that proves nothing</small>“A passed prompt shows that someone tapped Approve. Intruders get prompts approved too, so this fits both explanations.”</blockquote><blockquote class="bad"><small>After over-reacting</small>“You had strong evidence that this was approved work and contained anyway. The business paid for an interruption the evidence did not support.”</blockquote>
+    <dl>
+      <div><dt>How it is scored</dt><dd>Outcome 40, decisions 36, reasoning 24. “Each call is judged on what you knew at the time, not on how the case turned out.”</dd></div>
+      <div><dt>Proved by tests</dt><dd>“No single blind opening wins in both variants.” “Investigating first is not always right: delay lets the incident progress.” 13 tests.</dd></div>
+      <div><dt>Depth and replay</dt><dd>The seed decides whether it is a compromise or approved work. Practice mode can rewind to any decision.</dd></div>
+      <div><dt>Why it sticks</dt><dd>Two truths with the same opening teach that the right call comes from evidence, not from matching a familiar story. A warm-up before a hands-on investigation lab.</dd></div>
+    </dl>
+  </div>
+</article>
+<article class="game" id="g-dispatch">
+  <div class="game-media">
+    <div class="frame"><video controls muted loop playsinline preload="none" poster="media/dispatch.jpg" data-auto data-src="media/dispatch.mp4" aria-label="Cyber Dispatch: First Shift gameplay"></video></div>
+    <div class="game-actions"><button class="btn primary" type="button" data-play="play/dispatch.html" data-name="Cyber Dispatch: First Shift">▶ Play this game</button><span>Runs in your browser · sample content</span></div>
+    <figure class="debrief"><img src="shots/dispatch-debrief.jpg" alt="Cyber Dispatch: First Shift debrief screen" width="1100" height="619" loading="lazy"><figcaption>The debrief explains the result and replays the learner’s decisions.</figcaption></figure>
+  </div>
+  <div class="game-copy">
+    <p class="eb">Game 5 of 8 · Dispatcher desk</p>
+    <h3>Cyber Dispatch: First Shift</h3>
+    <p class="teaches"><b>Teaches:</b> Asking the questions that matter, giving the safe next step before harm lands, and handing off only what the evidence confirms.</p>
+    <blockquote class=""><small>A report comes in</small>“Hi! I just got an MFA prompt but I’m not signing in right now. I’m at my desk. Is this legit?” Asking reveals: “The prompt shows a Mail sign-in from Rotterdam. She is in the Lisbon office.”</blockquote><blockquote class=""><small>The safe step, in time</small>“Turn off Wi-Fi and unplug the network cable now. Leave the laptop switched on.”</blockquote><blockquote class="bad"><small>A harmful step and its consequence</small>“Reply to the email and ask them to confirm the new details.” → “The sender ‘confirmed’ their own request, and Elena queued the payment.”</blockquote>
+    <dl>
+      <div><dt>How it is scored</dt><dd>Four parts of 25 per report: evidence gathered, priority, guidance and handoff. Response time is shown but kept out of the score.</dd></div>
+      <div><dt>Proved by tests</dt><dd>“Escalating everything as high scores poorly.” “Asking every question before acting is not the best run.” 24 tests.</dd></div>
+      <div><dt>Depth and replay</dt><dd>6 reports over 2 shifts, 38 questions, 24 guidance options. The second shift changes which report is benign.</dd></div>
+      <div><dt>Why it sticks</dt><dd>Recoverable harm: the learner sees the damage a bad instruction causes, then gets to put it right. First response and handoff, for help desks and non-specialists.</dd></div>
+    </dl>
+  </div>
+</article>
+<article class="game flip" id="g-queryhunt">
+  <div class="game-media">
+    <div class="frame"><video controls muted loop playsinline preload="none" poster="media/queryhunt.jpg" data-auto data-src="media/queryhunt.mp4" aria-label="Query Hunt: Unusual Access gameplay"></video></div>
+    <div class="game-actions"><button class="btn primary" type="button" data-play="play/queryhunt.html" data-name="Query Hunt: Unusual Access">▶ Play this game</button><span>Runs in your browser · sample content</span></div>
+    <figure class="debrief"><img src="shots/queryhunt-debrief.jpg" alt="Query Hunt: Unusual Access debrief screen" width="1100" height="619" loading="lazy"><figcaption>The debrief explains the result and replays the learner’s decisions.</figcaption></figure>
+  </div>
+  <div class="game-copy">
+    <p class="eb">Game 6 of 8 · SQL investigation</p>
+    <h3>Query Hunt: Unusual Access</h3>
+    <p class="teaches"><b>Teaches:</b> Filtering, aggregating and joining real log tables, reading the result correctly, and telling a suspicious observation from a confirmed conclusion.</p>
+    <blockquote class=""><small>A query the learner produces</small><code>SELECT account_id, COUNT(*) AS attempts FROM logins WHERE result = 'failure' … GROUP BY account_id ORDER BY attempts DESC</code></blockquote><blockquote class="bad"><small>When the learner jumps ahead</small>“Repeated failed logins alone do not establish compromise: they show attempts. Which evidence shows what happened after them?”</blockquote><blockquote class=""><small>The debrief names the limits</small>“The records do not show who was at the keyboard, how the password was obtained, or that data left the device.”</blockquote>
+    <dl>
+      <div><dt>How it is scored</dt><dd>Out of 1,000: correct results, evidence cards, interpretation and conclusion. A right conclusion without its evidence scores zero. Hints are counted, never deducted.</dd></div>
+      <div><dt>Proved by tests</dt><dd>“Accepts equivalent queries written differently.” “Never grants evidence for running a query.” Real SQLite runs in the tests. 31 tests.</dd></div>
+      <div><dt>Depth and replay</dt><dd>A second dataset makes the highest failure count the wrong account to follow. Guided tiles or written SQL.</dd></div>
+      <div><dt>Why it sticks</dt><dd>Writing the query is retrieval practice. Being stopped from over-claiming teaches analytic discipline. Log analysis practice with real SQL in the browser.</dd></div>
+    </dl>
+  </div>
+</article>
+<article class="game" id="g-cloud">
+  <div class="game-media">
+    <div class="frame"><video controls muted loop playsinline preload="none" poster="media/cloud.jpg" data-auto data-src="media/cloud.mp4" aria-label="Cloud Command: First Orbit gameplay"></video></div>
+    <div class="game-actions"><button class="btn primary" type="button" data-play="play/cloud.html" data-name="Cloud Command: First Orbit">▶ Play this game</button><span>Runs in your browser · sample content</span></div>
+    <figure class="debrief"><img src="shots/cloud-debrief.jpg" alt="Cloud Command: First Orbit debrief screen" width="1100" height="619" loading="lazy"><figcaption>The debrief explains the result and replays the learner’s decisions.</figcaption></figure>
+  </div>
+  <div class="game-copy">
+    <p class="eb">Game 7 of 8 · Arcade flight</p>
+    <h3>Cloud Command: First Orbit</h3>
+    <p class="teaches"><b>Teaches:</b> Finding the real capacity constraint through a dependency, balancing availability against cost, least privilege, and who is responsible for what on IaaS.</p>
+    <blockquote class=""><small>Requirements</small>“Serve at least 99% of checkout requests at the peak.” “Keep 10% headroom above the expected peak on every service in the request path.” “Cost ceiling: 120 credits for the 2-hour surge window.”</blockquote><blockquote class="bad"><small>After scaling the wrong service</small>Checkout “has enough capacity, but each request calls” the Payments API, “which can serve only” 1,200 rps. More checkout instances “cannot help until” it has capacity.</blockquote><blockquote class=""><small>Least privilege</small>A backup account holds 7 permissions. “Reading a snapshot requires keys:use on that key. The ticket does not mention it.”</blockquote>
+    <dl>
+      <div><dt>How it is scored</dt><dd>Continuity 35%, policy 30%, resources 15%, justification 20%. A failed access review marks the security objective failed whatever the score.</dd></div>
+      <div><dt>Proved by tests</dt><dd>“Adding capacity helps only where capacity is the constraint.” “Does not let a high score hide a failed security objective.” 18 tests.</dd></div>
+      <div><dt>Depth and replay</dt><dd>3 checkpoints, 11 evidence items. Fly manually or on autopilot; flying is reported apart from the learning score.</dd></div>
+      <div><dt>Why it sticks</dt><dd>The numbers in the feedback come from the simulation, so the explanation matches exactly what the learner did. Cloud fundamentals in a lighter, arcade style.</dd></div>
+    </dl>
+  </div>
+</article>
+<article class="game flip" id="g-privilege">
+  <div class="game-media">
+    <div class="frame"><video controls muted loop playsinline preload="none" poster="media/privilege.jpg" data-auto data-src="media/privilege.mp4" aria-label="Privilege Path Puzzle: Who Can Read Payroll gameplay"></video></div>
+    <div class="game-actions"><button class="btn primary" type="button" data-play="play/privilege.html" data-name="Privilege Path Puzzle: Who Can Read Payroll">▶ Play this game</button><span>Runs in your browser · sample content</span></div>
+    <figure class="debrief"><img src="shots/privilege-debrief.jpg" alt="Privilege Path Puzzle: Who Can Read Payroll debrief screen" width="1100" height="619" loading="lazy"><figcaption>The debrief explains the result and replays the learner’s decisions.</figcaption></figure>
+  </div>
+  <div class="game-copy">
+    <p class="eb">Game 8 of 8 · Access graph puzzle</p>
+    <h3>Privilege Path Puzzle: Who Can Read Payroll</h3>
+    <p class="teaches"><b>Teaches:</b> Tracing nested groups and inherited grants to find every route to a file, then making the smallest change that closes it without breaking business access.</p>
+    <blockquote class=""><small>The brief</small>“An engineer opened a payroll file. Nobody remembers giving them access.” Hidden in the graph: “Added during a payroll deadline two years ago so Finance could get in quickly.”</blockquote><blockquote class=""><small>A check the fix must still pass</small>“svc-backup · Write · Ledger — must be denied”: “A backup job copies data. It never needs to change it.”</blockquote><blockquote class="bad"><small>After a wrong explanation</small>“Signing in is authentication: it proves who Alex is. What Alex may open is authorization, and that came from a grant.”</blockquote>
+    <dl>
+      <div><dt>How it is scored</dt><dd>100 for solving, a bonus for matching the minimum number of changes, points for correct predictions, and 40 for explaining it right first time.</dd></div>
+      <div><dt>Proved by tests</dt><dd>“Never treats connectivity as authorization.” Each puzzle “cannot be solved with fewer changes than par” and “fails when access is removed for everyone”. 25 tests.</dd></div>
+      <div><dt>Depth and replay</dt><dd>3 puzzles, 22 nodes, 13 access checks. Inspect, predict, test, change, verify, explain.</dd></div>
+      <div><dt>Why it sticks</dt><dd>Predict, test, then explain: the learner commits to an answer before seeing the result. Identity and access reasoning as a visual puzzle.</dd></div>
+    </dl>
+  </div>
+</article>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <div class="head"><div><p class="eb">Why people remember it</p><h2>Built on how people learn, not on points and badges.</h2></div><p>Most “gamified” training is a quiz with a score on top. These start from the skill and make the skill the only way to play.</p></div>
+    <div class="grid3">
+      <div class="card"><span class="tag">Retrieval practice</span><h4>The learner produces the answer</h4><p>They write the SQL, build the rule, place the alert, choose the fix. Producing an answer builds memory that reading and recognising do not.</p></div>
+      <div class="card"><span class="tag">Immediate, specific feedback</span><h4>Every mistake explains itself</h4><p>Feedback names the decision and the reason at the moment it happens, in one or two plain sentences.</p></div>
+      <div class="card"><span class="tag">Safe failure</span><h4>Consequences without damage</h4><p>A wrong call queues a fraudulent payment or cuts off a working laptop, in fiction. The learner sees the cost, then gets to fix it.</p></div>
+      <div class="card"><span class="tag">Judgment over recall</span><h4>Evidence before conclusion</h4><p>Inspecting never classifies for you. Weak evidence never counts as proof. A right conclusion without its evidence scores zero.</p></div>
+      <div class="card"><span class="tag">Reflection</span><h4>A debrief that replays your decisions</h4><p>Choice, observed result, and why. One game rebuilds the exact moment from the learner’s own command log.</p></div>
+      <div class="card"><span class="tag">Short and repeatable</span><h4>Five minutes, different next time</h4><p>Seeds and variants change the traffic, the attacker, or which report is harmless, so a replay is practice and not memorisation.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap split">
+    <div>
+      <p class="eb">Twenty years of game craft, applied to training</p>
+      <h2>The hard part is balance. I test it like a game studio.</h2>
+      <p class="lede" style="font-size:17px">If a learner can win by doing the same thing every time, the game teaches that habit. So every game has tests that prove the lazy strategy loses.</p>
+      <div class="grid2" style="margin-top:28px">
+        <div class="card"><h4>The first ten seconds</h4><p>A guided first step in each game. The learner acts before they read a manual.</p></div>
+        <div class="card"><h4>An economy of trade-offs</h4><p>Action points, analyst slots, credits and minutes are limited. Limits turn knowledge into decisions.</p></div>
+      </div>
+    </div>
+    <div>
+      <table>
+        <tr><th>Lazy strategy</th><th>What the tests prove</th></tr>
+        <tr><td><b>Block everything</b></td><td>“Blanket blocking cannot earn the best result”, checked on 8 seeds</td></tr>
+        <tr><td><b>Report every email</b></td><td>Always-report, always-safe and always-verify each “stay out of the top two ratings”</td></tr>
+        <tr><td><b>Escalate everything</b></td><td>“Penalizes escalating everything alarming” and “penalizes monitoring everything”</td></tr>
+        <tr><td><b>Trust the label</b></td><td>“Never treats the severity tag as a valid justification”</td></tr>
+        <tr><td><b>Always investigate first</b></td><td>“Investigating first is not always right: delay lets the incident progress”</td></tr>
+        <tr><td><b>Go fast</b></td><td>“Slow but correct play still earns the top rating”</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="build">
+  <div class="wrap">
+    <div class="head"><div><p class="eb">Built like a product, not a demo</p><h2>Made to be reviewed, tested, embedded and extended.</h2></div><p>About 22,000 lines of TypeScript including tests. I design and direct, and build with AI-assisted tooling, which is how one person ships this much.</p></div>
+    <div class="grid3">
+      <div class="card"><h4>Content in one file per game</h4><p>Scenarios, evidence, policy and explanations sit apart from the code, so your subject experts can review and change the teaching without touching the engine.</p></div>
+      <div class="card"><h4>Rules that run without a browser</h4><p>Each simulation is pure logic, separate from the screen. That is why 209 tests can check the learning rules in under two seconds.</p></div>
+      <div class="card"><h4>Deterministic and replayable</h4><p>The same seed and the same commands always give the same result. It powers the debrief replays and allows server-side verification.</p></div>
+      <div class="card"><h4>Drops into your platform</h4><p>Each game is a static page that posts started, statement and completed events to its host, with an activity ID per scenario. No backend, no sign-in.</p></div>
+      <div class="card"><h4>Expert review packs</h4><p>A review sheet lists every objective, simplification and explanation for your experts to approve, correct or reject.</p></div>
+      <div class="card"><h4>Accessible by design</h4><p>Keyboard play, focus-managed dialogs, screen-reader announcements, reduced-motion and larger-text settings. Status never relies on colour alone.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="head"><div><p class="eb">What it does for a training business</p><h2>The cheapest way to add practice, reach and proof.</h2></div><p>I have not measured learner outcomes on these yet and I am not quoting numbers. The first thing I do with a client is put games in front of real learners and measure.</p></div>
+    <div class="grid3">
+      <div class="card"><h4>Practice that costs nothing to run</h4><p>A hands-on lab needs live machines. A game is a static page. Learners can practise as often as they like.</p></div>
+      <div class="card"><h4>A demo that runs anywhere</h4><p>No sign-in and no install. A prospect can play a round in a meeting, at a booth, or from a link in an email.</p></div>
+      <div class="card"><h4>More for every licence</h4><p>New games widen your catalog between major releases and give customer admins something fresh to assign.</p></div>
+      <div class="card"><h4>Made for workshops and events</h4><p>Short, scored, easy to watch. They suit live sessions where dozens of people play at once from a browser.</p></div>
+      <div class="card"><h4>Evidence for reporting</h4><p>Decisions and reasoning are recorded apart from the score, so readiness reporting gets more than a completion tick.</p></div>
+      <div class="card"><h4>Mapped to your frameworks</h4><p>Scenarios are data, so each can be tagged to NICE work roles, MITRE ATT&amp;CK or your own skills model, and localised.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap split">
+    <div>
+      <p class="eb">More games, in any style</p>
+      <h2>Eight genres so far. The method is what scales.</h2>
+      <ul style="list-style:none;padding:0;margin:26px 0 0;display:grid;gap:14px;color:var(--muted)">
+        <li><b>Start from the skill.</b> One learning objective, one decision learners keep getting wrong.</li>
+        <li><b>Find the mechanic that is the skill.</b> If you can win without the knowledge, it is the wrong mechanic.</li>
+        <li><b>Write the content as data.</b> Scenario, evidence, and an explanation for each mistake, in one reviewable file.</li>
+        <li><b>Prove the balance.</b> Tests that show lazy strategies lose and careful play wins.</li>
+        <li><b>Hand your expert a review sheet.</b> Every objective and simplification, ready to approve or correct.</li>
+      </ul>
+    </div>
+    <div>
+      <table>
+        <tr><th style="width:38%">What I could build for you</th><th>Why</th></tr>
+        <tr><td><b>Incident response sequencer</b></td><td>Order the response steps under pressure, then defend the order.</td></tr>
+        <tr><td><b>Framework sorters</b></td><td>Route events to NIST CSF functions, or techniques to ATT&amp;CK tactics.</td></tr>
+        <tr><td><b>New cases for these eight</b></td><td>New scenarios are content, not code: a second inbox, a harder shift, a new dataset.</td></tr>
+        <tr><td><b>Team modes for live events</b></td><td>Head-to-head triage and dispatch with a shared leaderboard.</td></tr>
+        <tr><td><b>Lab warm-ups</b></td><td>A two-minute game before a hands-on lab that drills the one concept it depends on.</td></tr>
+        <tr><td><b>Your curriculum, your look</b></td><td>The same method in your visual style, on your content.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="band">
+  <div class="wrap">
+    <div class="head"><div><p class="eb">Work with me</p><h2>Three ways to start.</h2></div><p>Fixed scope, a clear end point, and you own what you pay for.</p></div>
+    <div class="offers">
+      <div class="offer hot"><span class="pill">Start here</span><h4>One game, built for you</h4><p class="when">Fixed scope and fee</p><p>Give me one skill your learners keep failing. You get a playable game on your content.</p><ul><li>Concept and mechanic, agreed before I build</li><li>Authored scenario with an explanation for every mistake</li><li>Test suite that proves the balance</li><li>Review sheet for your subject experts</li><li>Static build that embeds in your platform</li></ul><a class="btn primary" href="mailto:rcouture@gmail.com?subject=Gamified%20cyber%20training%20for%20our%20platform&body=Company%3A%0AWhat%20we%20train%3A%0AWhat%20we%20want%20help%20with%3A%0ATiming%3A%0A">Start with one game ↗</a></div>
+      <div class="offer"><span class="pill" style="background:var(--cyan)">Ongoing</span><h4>A games pipeline</h4><p class="when">Monthly</p><p>A steady stream of new games and new cases, planned against your curriculum.</p><ul><li>A roadmap mapped to your skills framework</li><li>New games and new scenarios each cycle</li><li>Playtests with your learners, and fixes from what they show</li><li>An authoring guide so your team can add cases</li></ul><a class="btn" href="mailto:rcouture@gmail.com?subject=Gamified%20cyber%20training%20for%20our%20platform&body=Company%3A%0AWhat%20we%20train%3A%0AWhat%20we%20want%20help%20with%3A%0ATiming%3A%0A">Plan a pipeline ↗</a></div>
+      <div class="offer"><span class="pill" style="background:var(--amber)">Hire</span><h4>On your team</h4><p class="when">Full time or contract</p><p>A senior product designer who builds, for your games and your learner experience.</p><ul><li>Game design, UX and UI, and front-end build</li><li>Learner journeys, mission flow and debriefs</li><li>Design systems for dense, expert interfaces</li><li>Remote from Greater Montreal</li></ul><a class="btn" href="https://remiclassic.github.io/remiresume/" target="_blank" rel="noopener">See my résumé ↗</a></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap about">
+    <div>
+      <p class="eb">Who you would work with</p>
+      <h2>A game designer who builds, and who knows cyber training.</h2>
+      <p class="lede" style="font-size:17px">I’m Rémi Couture. I have spent nearly twenty years designing game interfaces for teams including Disney, Sony, Riot Games, Tencent and Twitch, and directed UX across nine studios at once. More recently I have worked inside a commercial cyber range on the learner’s first-time experience, mission flow and hub.</p>
+      <ul>
+        <li><b>Design and build from the same hands.</b> What you approve in the prototype is what ships.</li>
+        <li><b>Learning first.</b> You get the reasoning in writing and the tests that back it, not just a good-looking screen.</li>
+        <li><b>Honest about status.</b> The eight games here are prototypes with sample content, pending expert review and learner playtests. Closing that gap with your experts is the job.</li>
+      </ul>
+    </div>
+    <div class="grid" style="display:grid;gap:14px">
+      <a class="card" style="text-decoration:none" href="https://remiclassic.github.io/remiresume/cyber-games.html#mission-control" target="_blank" rel="noopener"><h4>Mission Control case study ↗</h4><p>The home screen of a gamified cyber range: hierarchy, onboarding, progression and a live world, as a working prototype.</p></a>
+      <a class="card" style="text-decoration:none" href="https://remiclassic.github.io/remiresume/cyber-games.html#product-design" target="_blank" rel="noopener"><h4>First-time experience study ↗</h4><p>Seven design directions and a six-step onboarding that gets a new learner to their first activity.</p></a>
+      <a class="card" style="text-decoration:none" href="https://www.linkedin.com/in/remicouture/" target="_blank" rel="noopener"><h4>LinkedIn and recommendations ↗</h4><p>What managers, clients and teammates say about working with me.</p></a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap"><div class="cta">
+    <p class="eb">Next step</p>
+    <h2>Play two games with me for thirty minutes.</h2>
+    <p>I will show you how each one was designed, then we will pick the one skill in your curriculum that would make the best first game.</p>
+    <div class="actions"><a class="btn primary" href="mailto:rcouture@gmail.com?subject=Gamified%20cyber%20training%20for%20our%20platform&body=Company%3A%0AWhat%20we%20train%3A%0AWhat%20we%20want%20help%20with%3A%0ATiming%3A%0A">Email me about your platform ↗</a><a class="btn" href="https://www.linkedin.com/in/remicouture/" target="_blank" rel="noopener">Message me on LinkedIn ↗</a></div>
+    <p style="font-size:14px;margin-top:22px">rcouture@gmail.com</p>
+  </div></div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Rémi Couture · Strategic Sloth LLC</span><span>Prototypes with fictional sample content. <a href="https://strategicsloth.com/training/" target="_blank" rel="noopener">Studio site ↗</a></span></div></footer>
+
+<div id="player" role="dialog" aria-modal="true" aria-label="Game"><div class="bar"><span id="player-name">Playing</span><button class="btn primary" type="button" id="player-close" style="padding:9px 16px">✕ Close and return</button></div><iframe title="Game" allow="fullscreen"></iframe></div>
+
+<script>
+(function () {
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function load(v) { if (v.dataset.src) { v.src = v.dataset.src; v.removeAttribute('data-src'); } }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) { load(v); if (!reduce) v.play().then(function () { v.classList.add('on'); }).catch(function () {}); }
+        else { v.pause(); }
+      });
+    }, { threshold: 0.45 });
+    document.querySelectorAll('.tile video, video[data-auto]').forEach(function (v) { io.observe(v); });
+  }
+  document.querySelectorAll('video[controls]').forEach(function (v) { v.addEventListener('play', function () { load(v); }); v.addEventListener('click', function () { load(v); }, { once: true }); });
+  var reel = document.querySelector('#reel video'); if (reel) { var once = function () { if (reel.dataset.src) { load(reel); reel.play().catch(function () {}); } }; reel.addEventListener('pointerdown', once); reel.addEventListener('keydown', once); }
+  var player = document.getElementById('player'), frame = player.querySelector('iframe'), opener = null;
+  function close() { player.classList.remove('on'); frame.src = 'about:blank'; document.body.style.overflow = ''; if (opener) opener.focus(); }
+  document.querySelectorAll('[data-play]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      opener = b; document.querySelectorAll('video').forEach(function (v) { v.pause(); });
+      document.getElementById('player-name').textContent = b.dataset.name;
+      frame.src = b.dataset.play; player.classList.add('on'); document.body.style.overflow = 'hidden';
+      document.getElementById('player-close').focus();
+    });
+  });
+  document.getElementById('player-close').addEventListener('click', close);
+  addEventListener('keydown', function (e) { if (e.key === 'Escape' && player.classList.contains('on')) close(); });
+})();
+</script>
+</body>
+</html>
